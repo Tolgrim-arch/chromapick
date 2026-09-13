@@ -1,10 +1,11 @@
-const CACHE_NAME = 'chromapick-v4';
+const CACHE_NAME = 'chromapick-v5';
 const ASSETS = [
     './',
     './index.html',
     './style.css',
     './app.js',
     './manifest.json',
+    './icons/icon.svg',
     './icons/icon-192.png',
     './icons/icon-512.png'
 ];

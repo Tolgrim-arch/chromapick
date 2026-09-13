@@ -37,6 +37,23 @@ header h1 {
     color: #111827;
 }
 
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 0.5rem;
+}
+
+.logo-container h1 {
+    margin-bottom: 0;
+}
+
+.app-logo {
+    width: 48px;
+    height: 48px;
+}
+
 header p {
     color: #6b7280;
 }
