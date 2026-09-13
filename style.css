@@ -177,7 +177,8 @@ main {
     background-image: 
       linear-gradient(rgba(0,0,0,0.15) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0,0,0,0.15) 1px, transparent 1px);
-    background-size: 16px 16px; /* Coincide con MAGNIFIER_ZOOM = 8 */
+    background-size: 16px 16px;
+    background-position: var(--grid-x, 0) var(--grid-y, 0); /* Coincide con MAGNIFIER_ZOOM = 8 */
     pointer-events: none;
 }
 
