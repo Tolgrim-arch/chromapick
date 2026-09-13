@@ -9,6 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
     heartCheckboxes.forEach(cb => {
         cb.addEventListener('change', (e) => {
             const hex = getSystemCurrentHex();
+            if (!hex) {
+                e.target.checked = false;
+                alert("Primero debes extraer o seleccionar un color.");
+                return;
+            }
+            
             if (e.target.checked) {
                 addFavoriteToGlobal(hex);
             } else {
@@ -45,17 +51,38 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function getSystemCurrentHex() {
+    // Check which view is currently visible
+    const activeView = document.querySelector('.app-view[style*="display: flex"]') || document.querySelector('.app-view.active');
+    
+    // If in Extractor, explicitly require the extractor's input to have a value
+    if (activeView && activeView.id === 'view-extractor') {
+        const hexInput = document.getElementById('hex-value');
+        if (hexInput && hexInput.value) return hexInput.value.toUpperCase();
+        return null;
+    }
+    
+    // If in Converter, use converter's input
+    if (activeView && activeView.id === 'view-converter') {
+        const pickerHex = document.getElementById('picker-hex');
+        if (pickerHex && pickerHex.value) return pickerHex.value.toUpperCase();
+    }
+    
+    // If in Favorites or anywhere else, prioritize Extractor, then fallback to Converter
     const hexInput = document.getElementById('hex-value');
     if (hexInput && hexInput.value) return hexInput.value.toUpperCase();
     
     const pickerHex = document.getElementById('picker-hex');
     if (pickerHex && pickerHex.value) return pickerHex.value.toUpperCase();
     
-    return "#000000";
+    return null;
 }
 
 function syncHeartState() {
     const hex = getSystemCurrentHex();
+    if (!hex) {
+        document.querySelectorAll('.fav-heart-checkbox').forEach(cb => cb.checked = false);
+        return;
+    }
     const isFav = isFavorite(hex);
     document.querySelectorAll('.fav-heart-checkbox').forEach(cb => {
         cb.checked = isFav;
@@ -134,6 +161,10 @@ function renderPalettes() {
         addBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>';
         addBtn.addEventListener('click', () => {
             const hex = getSystemCurrentHex();
+            if (!hex) {
+                alert("Primero debes extraer o seleccionar un color.");
+                return;
+            }
             if (!pal.colors.includes(hex)) {
                 pal.colors.push(hex);
                 savePalettes();
