@@ -379,3 +379,15 @@ h3 {
     border-radius: 6px;
     width: 100%; /* Asegura que ocupe el ancho en m√≥viles */
 }
+
+/* Optimizaciones para MÛviles */
+@media (max-width: 768px) {
+    header { padding: 1.5rem 1rem; }
+    header h1 { font-size: 1.5rem; }
+    .upload-section { min-height: auto; padding: 2rem 1rem; gap: 1rem; }
+    .drop-zone { min-height: 200px; padding: 1rem; }
+    .canvas-container { min-height: 250px; max-height: 50vh; }
+    .color-panel { min-width: 100%; padding: 1rem; }
+    .palette { height: 100px; }
+    .color span { font-size: 10px; }
+}
