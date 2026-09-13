@@ -155,11 +155,11 @@ main {
 
 .magnifier {
     position: absolute;
-    width: 90px;
-    height: 90px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
-    border: 3px solid white;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(0,0,0,0.1);
+    border: 10px solid #1f2937;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 0 0 2px white;
     pointer-events: none;
     display: none;
     background-repeat: no-repeat;
@@ -188,7 +188,7 @@ main {
     top: 50%;
     left: 50%;
     width: 10px; /* Tamaño exacto del pixel zoomeado con marco (8+2) */
-    height: 10px;
+    height: 8px;
     transform: translate(-50%, -50%);
     border: 1px solid white;
     box-shadow: 0 0 0 1px black; /* Alto contraste invertido para ser visible siempre */
