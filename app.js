@@ -159,8 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         presetImg.addEventListener('click', loadPreset);
         
-        // Autocargar el preset por defecto al arrancar la app
-        window.addEventListener('load', loadPreset);
+        // Ejecutar directamente sin depender del evento load (que podría haber disparado ya)
+        loadPreset();
     }
 
     // --- Color Picking & Canvas Events ---
