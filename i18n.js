@@ -12,7 +12,11 @@ const translations = {
         amount: "Amount: ",
         load_another: "Load another image",
         pick_screen: "Pick from screen",
-        error_eyedropper: "Your browser does not support the native EyeDropper API."
+        error_eyedropper: "Your browser does not support the native EyeDropper API.",
+        tab_favorites: "Favorites",
+        saved_palettes: "Saved Palettes",
+        new_palette: "New Palette",
+        name_palette: "Palette name:"
     },
     es: {
         subtitle: "Extractor de paletas de color offline",
@@ -27,7 +31,11 @@ const translations = {
         amount: "Cantidad: ",
         load_another: "Cargar otra imagen",
         pick_screen: "Extraer de pantalla",
-        error_eyedropper: "Tu navegador no soporta la API nativa de EyeDropper."
+        error_eyedropper: "Tu navegador no soporta la API nativa de EyeDropper.",
+        tab_favorites: "Favoritos",
+        saved_palettes: "Paletas Guardadas",
+        new_palette: "Nueva Paleta",
+        name_palette: "Nombre de la paleta:"
     },
     zh: {
         subtitle: "离线调色板提取器",
