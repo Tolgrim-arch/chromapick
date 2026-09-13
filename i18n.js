@@ -486,7 +486,9 @@ function changeLanguage(lang) {
     if (!translations[lang]) return;
     currentLang = lang;
     localStorage.setItem('chromapick_lang', lang);
+    document.documentElement.lang = lang;
     applyTranslations();
+    if (window.renderPalettes) window.renderPalettes();
 }
 
 function applyTranslations() {
