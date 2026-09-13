@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chromapick - Extractor de Paletas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f9fafb">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+</head>
+<body>
+    <header>
+        <h1>Chromapick</h1>
+        <p>Extractor de paletas de color offline</p>
+    </header>
+
+    <main>
+        <section class="upload-section" id="upload-section">
+            <div class="drop-zone" id="drop-zone">
+                <span class="drop-text">Arrastra una imagen aquí o haz clic para subir</span>
+                <input type="file" id="file-input" accept="image/*" hidden>
+            </div>
+        </section>
+
+        <section class="workspace" id="workspace" style="display: none;">
+            <div class="canvas-container">
+                <canvas id="image-canvas"></canvas>
+            </div>
+            
+            <aside class="color-panel">
+                <div class="current-color">
+                    <h3>Color Seleccionado</h3>
+                    <div class="color-preview" id="current-color-preview"></div>
+                    <div class="color-values">
+                        <input type="text" id="hex-value" readonly>
+                        <button class="copy-btn" data-target="hex-value">Copiar</button>
+                    </div>
+                    <div class="color-values">
+                        <input type="text" id="rgb-value" readonly>
+                        <button class="copy-btn" data-target="rgb-value">Copiar</button>
+                    </div>
+                </div>
+
+                <div class="extracted-palette">
+                    <h3>Paleta Extraída</h3>
+                    <div class="palette-container" id="palette-container">
+                        <!-- Colors will be injected here -->
+                    </div>
+                </div>
+                
+                <button class="reset-btn" id="reset-btn">Cargar otra imagen</button>
+            </aside>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').then(reg => {
+                    console.log('Service Worker registrado', reg);
+                }).catch(err => {
+                    console.warn('Error al registrar Service Worker', err);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
