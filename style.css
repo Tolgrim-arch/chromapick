@@ -117,6 +117,7 @@ main {
 }
 
 .workspace {
+    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -125,12 +126,14 @@ main {
 
 @media (min-width: 768px) {
     .workspace {
+    min-width: 0;
         flex-direction: row;
         align-items: flex-start;
     }
 }
 
 .canvas-container {
+    min-width: 0;
     flex: 2;
     background-color: #e5e7eb;
     border-radius: 12px;
@@ -396,8 +399,9 @@ h3 {
     main { margin: 1rem; padding: 1rem; }
     .upload-section { min-height: auto; padding: 2rem 1rem; gap: 1rem; }
     .drop-zone { min-height: 200px; padding: 1rem; }
-    .canvas-container { min-height: 250px; max-height: 50vh; padding: 1rem; }
-    .color-panel { min-width: 100%; padding: 1rem; }
+    .canvas-container {
+    min-width: 0; min-height: 250px; max-height: 50vh; padding: 1rem; }
+    .color-panel { min-width: 0; padding: 1rem; }
     .palette { height: 100px; }
     .color span { font-size: 10px; }
 }
@@ -430,6 +434,7 @@ h3 {
     color: var(--accent-color);
 }
 .app-view {
+    min-width: 0;
     display: none;
     flex-direction: column;
     flex: 1;
