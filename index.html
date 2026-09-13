@@ -70,15 +70,14 @@
         </section>
     </main>
 
-    <script src="app.js?v=19"></script>
+    <script src="app.js?v=20"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.getRegistrations().then(registrations => {
-                    for (let registration of registrations) {
-                        registration.unregister();
-                        console.log('ServiceWorker desregistrado para forzar limpieza de caché');
-                    }
+                navigator.serviceWorker.register('sw.js').then(reg => {
+                    console.log('PWA ServiceWorker activado.', reg.scope);
+                }).catch(err => {
+                    console.log('PWA ServiceWorker fallo:', err);
                 });
             });
         }
