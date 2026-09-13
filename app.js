@@ -163,7 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
         const colors = [];
         
-        const step = Math.floor((canvas.width * canvas.height) / 5000) * 4 || 4; 
+        // Aumentamos la resolución de muestreo para garantizar capturar más colores en imágenes simples
+        const step = Math.floor((canvas.width * canvas.height) / 25000) * 4 || 4; 
         
         for (let i = 0; i < imageData.length; i += step) {
             const r = imageData[i];
@@ -212,13 +213,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Si aún nos faltan colores para llegar al count (ej. una imagen con solo 2 colores)
         // rellenamos con los siguientes más frecuentes sin importar la similitud
-        if (uniqueColors.length < count) {
-            for (const c of sortedByFreq) {
+        // Si la imagen es un logo o pixel-art con colores limitados exactos (ej. 7 colores reales)
+        // generamos variaciones sutiles (noise) para rellenar la paleta hasta el count deseado por el slider.
+        let noiseOffset = 10;
+        while (uniqueColors.length < count) {
+            for (let i = 0; i < sortedByFreq.length; i++) {
                 if (uniqueColors.length >= count) break;
-                if (!uniqueColors.find(u => u.r === c.r && u.g === c.g && u.b === c.b)) {
-                    uniqueColors.push(c);
-                }
+                const base = sortedByFreq[i];
+                // Generar variación sutil
+                const newColor = {
+                    r: Math.min(255, Math.max(0, base.r + noiseOffset)),
+                    g: Math.min(255, Math.max(0, base.g + noiseOffset)),
+                    b: Math.min(255, Math.max(0, base.b + noiseOffset))
+                };
+                uniqueColors.push(newColor);
+                noiseOffset = -noiseOffset + (noiseOffset > 0 ? 5 : -5); // variar la dirección y magnitud del ruido
             }
+            // Fallback extremo si sortedByFreq está vacío por alguna razón
+            if (sortedByFreq.length === 0) break; 
         }
 
         renderPalette(uniqueColors);
