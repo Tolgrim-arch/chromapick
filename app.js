@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Lógica de la Lupa (Magnifier) ---
     const magnifier = document.getElementById('magnifier');
-    const MAGNIFIER_ZOOM = 4;
+    const MAGNIFIER_ZOOM = 8;
     
     function updateMagnifier(e) {
         if (!currentImage) return;

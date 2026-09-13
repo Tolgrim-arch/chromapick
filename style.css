@@ -163,6 +163,34 @@ main {
     background-repeat: no-repeat;
     z-index: 100;
     transform: translate(-50%, -120%); /* Flota por encima del dedo para móviles */
+    image-rendering: pixelated; /* Crucial: renderizado de pixeles crudos en zoom */
+}
+
+/* Cuadrícula de la lupa */
+.magnifier::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-image: 
+      linear-gradient(rgba(0,0,0,0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.15) 1px, transparent 1px);
+    background-size: 8px 8px; /* Coincide con MAGNIFIER_ZOOM = 8 */
+    pointer-events: none;
+}
+
+/* Puntero central (píxel exacto) */
+.magnifier::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px; /* Tamaño exacto del pixel zoomeado con marco (8+2) */
+    height: 10px;
+    transform: translate(-50%, -50%);
+    border: 1px solid white;
+    box-shadow: 0 0 0 1px black; /* Alto contraste invertido para ser visible siempre */
+    pointer-events: none;
 }
 
 /* Presets */
