@@ -10,7 +10,7 @@
 }
 
 * {
-    box-sizing: border-box;
+    
     margin: 0;
     padding: 0;
 }
@@ -158,8 +158,8 @@ main {
     width: 130px;
     height: 130px;
     border-radius: 50%;
-    border: 10px solid #1f2937;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 0 0 2px white;
+    border: 1px solid #333;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     pointer-events: none;
     display: none;
     background-repeat: no-repeat;
@@ -177,7 +177,7 @@ main {
     background-image: 
       linear-gradient(rgba(0,0,0,0.15) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0,0,0,0.15) 1px, transparent 1px);
-    background-size: 8px 8px; /* Coincide con MAGNIFIER_ZOOM = 8 */
+    background-size: 16px 16px; /* Coincide con MAGNIFIER_ZOOM = 8 */
     pointer-events: none;
 }
 
@@ -187,8 +187,9 @@ main {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 10px; /* Tamaño exacto del pixel zoomeado con marco (8+2) */
-    height: 8px;
+    width: 16px;
+    height: 16px;
+    box-sizing: border-box;
     transform: translate(-50%, -50%);
     border: 1px solid white;
     box-shadow: 0 0 0 1px black; /* Alto contraste invertido para ser visible siempre */
@@ -481,6 +482,7 @@ h3 {
 .sv-knob {
     width: 16px;
     height: 16px;
+    box-sizing: border-box;
     border: 2px solid white;
     border-radius: 50%;
     position: absolute;
@@ -495,6 +497,7 @@ h3 {
 .hue-track {
     width: 100%;
     height: 16px;
+    box-sizing: border-box;
     border-radius: 8px;
     background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
 }
