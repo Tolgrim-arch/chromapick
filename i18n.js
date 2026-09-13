@@ -14,8 +14,8 @@ const translations = {
         pick_screen: "Pick from screen",
         error_eyedropper: "Your browser does not support the native EyeDropper API.",
         tab_favorites: "Favorites",
-        saved_palettes: "Saved Palettes",
-        new_palette: "New Palette",
+        saved_palettes: "Saved<br>Palettes",
+        new_palette: "New<br>Palette",
         name_palette: "Palette name:"
     },
     es: {
@@ -33,8 +33,8 @@ const translations = {
         pick_screen: "Extraer de pantalla",
         error_eyedropper: "Tu navegador no soporta la API nativa de EyeDropper.",
         tab_favorites: "Favoritos",
-        saved_palettes: "Paletas Guardadas",
-        new_palette: "Nueva Paleta",
+        saved_palettes: "Paletas<br>Guardadas",
+        new_palette: "Nueva<br>Paleta",
         name_palette: "Nombre de la paleta:"
     },
     zh: {
