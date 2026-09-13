@@ -286,7 +286,7 @@ h3 {
 
 /* Botones primarios (DRY) */
 .color-values .copy-btn,
-.reset-btn {
+.btn-primary {
     background-color: var(--accent-color);
     color: white;
     border: none;
@@ -296,7 +296,7 @@ h3 {
 }
 
 .color-values .copy-btn:hover,
-.reset-btn:hover {
+.btn-primary:hover {
     background-color: var(--accent-hover);
 }
 
@@ -375,7 +375,7 @@ h3 {
     border-radius: 0 6px 6px 0;
 }
 
-.reset-btn {
+.btn-primary {
     margin-top: 1rem;
     padding: 0.85rem;
     border-radius: 6px;
