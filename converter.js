@@ -268,3 +268,6 @@ function triggerEyeDropper() {
 }
 if(btnPickScreen) btnPickScreen.addEventListener('click', triggerEyeDropper);
 if(btnPickIcon) btnPickIcon.addEventListener('click', triggerEyeDropper);
+
+window.rgbToHsv = rgbToHsv;
+window.hexToRgb = hexToRgb;

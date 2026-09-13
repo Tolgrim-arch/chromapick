@@ -26,7 +26,12 @@ const translations = {
         tooltip_add_color: "Add selected color",
         tooltip_delete_palette: "Delete palette",
         tooltip_save_favorite: "Save to Favorites",
-        global_palette: "General Favorites"
+        global_palette: "General Favorites",
+        algorithm: "Algorithm:",
+        algo_normal: "Normal (Dominant)",
+        algo_vibrant: "Different (Vibrant)",
+        algo_warm: "Warm",
+        algo_cold: "Cold"
     },
     es: {
         subtitle: "Extractor de paletas de color offline",
@@ -55,7 +60,12 @@ const translations = {
         tooltip_add_color: "Añadir color seleccionado",
         tooltip_delete_palette: "Borrar paleta",
         tooltip_save_favorite: "Guardar en Favoritos",
-        global_palette: "Favoritos Generales"
+        global_palette: "Favoritos Generales",
+        algorithm: "Algoritmo:",
+        algo_normal: "Normal (Dominante)",
+        algo_vibrant: "Distintos (Vibrantes)",
+        algo_warm: "Cálidos",
+        algo_cold: "Fríos"
     },
     zh: {
         subtitle: "离线调色板提取器",
@@ -84,7 +94,12 @@ const translations = {
         tooltip_add_color: "添加选定的颜色",
         tooltip_delete_palette: "删除调色板",
         tooltip_save_favorite: "保存到收藏夹",
-        global_palette: "一般收藏"
+        global_palette: "一般收藏",
+        algorithm: "算法:",
+        algo_normal: "正常 (主色)",
+        algo_vibrant: "独特 (鲜艳)",
+        algo_warm: "暖色",
+        algo_cold: "冷色"
     },
     ja: {
         subtitle: "オフラインカラーパレット抽出ツール",
@@ -113,7 +128,12 @@ const translations = {
         tooltip_add_color: "選択した色を追加",
         tooltip_delete_palette: "パレットを削除",
         tooltip_save_favorite: "お気に入りに保存",
-        global_palette: "一般のお気に入り"
+        global_palette: "一般のお気に入り",
+        algorithm: "アルゴリズム:",
+        algo_normal: "通常 (ドミナント)",
+        algo_vibrant: "異なる (鮮やか)",
+        algo_warm: "暖色",
+        algo_cold: "寒色"
     },
     ko: {
         subtitle: "오프라인 색상 팔레트 추출기",
@@ -142,7 +162,12 @@ const translations = {
         tooltip_add_color: "선택한 색상 추가",
         tooltip_delete_palette: "팔레트 삭제",
         tooltip_save_favorite: "즐겨찾기에 저장",
-        global_palette: "일반 즐겨찾기"
+        global_palette: "일반 즐겨찾기",
+        algorithm: "알고리즘:",
+        algo_normal: "일반 (지배적)",
+        algo_vibrant: "다른 (생생한)",
+        algo_warm: "따뜻한",
+        algo_cold: "차가운"
     },
     de: {
         subtitle: "Offline-Farbpaletten-Extraktor",
@@ -171,7 +196,12 @@ const translations = {
         tooltip_add_color: "Ausgewählte Farbe hinzufügen",
         tooltip_delete_palette: "Palette löschen",
         tooltip_save_favorite: "In Favoriten speichern",
-        global_palette: "Allgemeine Favoriten"
+        global_palette: "Allgemeine Favoriten",
+        algorithm: "Algorithmus:",
+        algo_normal: "Normal (Dominant)",
+        algo_vibrant: "Anders (Lebendig)",
+        algo_warm: "Warm",
+        algo_cold: "Kalt"
     },
     pt: {
         subtitle: "Extrator de paleta de cores offline",
@@ -200,7 +230,12 @@ const translations = {
         tooltip_add_color: "Adicionar cor selecionada",
         tooltip_delete_palette: "Excluir paleta",
         tooltip_save_favorite: "Salvar nos favoritos",
-        global_palette: "Favoritos Gerais"
+        global_palette: "Favoritos Gerais",
+        algorithm: "Algoritmo:",
+        algo_normal: "Normal (Dominante)",
+        algo_vibrant: "Diferente (Vibrante)",
+        algo_warm: "Quente",
+        algo_cold: "Frio"
     },
     fr: {
         subtitle: "Extracteur de palette de couleurs hors ligne",
@@ -229,7 +264,12 @@ const translations = {
         tooltip_add_color: "Ajouter la couleur sélectionnée",
         tooltip_delete_palette: "Supprimer la palette",
         tooltip_save_favorite: "Enregistrer dans les favoris",
-        global_palette: "Favoris Généraux"
+        global_palette: "Favoris Généraux",
+        algorithm: "Algorithme :",
+        algo_normal: "Normal (Dominant)",
+        algo_vibrant: "Différent (Vibrant)",
+        algo_warm: "Chaud",
+        algo_cold: "Froid"
     },
     it: {
         subtitle: "Estrattore di tavolozze di colori offline",
@@ -258,7 +298,12 @@ const translations = {
         tooltip_add_color: "Aggiungi colore selezionato",
         tooltip_delete_palette: "Elimina tavolozza",
         tooltip_save_favorite: "Salva nei preferiti",
-        global_palette: "Preferiti Generali"
+        global_palette: "Preferiti Generali",
+        algorithm: "Algoritmo:",
+        algo_normal: "Normale (Dominante)",
+        algo_vibrant: "Diverso (Vibrante)",
+        algo_warm: "Caldo",
+        algo_cold: "Freddo"
     },
     ru: {
         subtitle: "Автономный экстрактор цветовой палитры",
@@ -287,7 +332,12 @@ const translations = {
         tooltip_add_color: "Добавить выбранный цвет",
         tooltip_delete_palette: "Удалить палитру",
         tooltip_save_favorite: "Сохранить в избранное",
-        global_palette: "Общие избранные"
+        global_palette: "Общие избранные",
+        algorithm: "Алгоритм:",
+        algo_normal: "Обычный (Доминирующий)",
+        algo_vibrant: "Разные (Яркие)",
+        algo_warm: "Теплые",
+        algo_cold: "Холодные"
     },
     vi: {
         subtitle: "Công cụ trích xuất bảng màu ngoại tuyến",
@@ -316,7 +366,12 @@ const translations = {
         tooltip_add_color: "Thêm màu đã chọn",
         tooltip_delete_palette: "Xóa bảng màu",
         tooltip_save_favorite: "Lưu vào mục yêu thích",
-        global_palette: "Yêu thích chung"
+        global_palette: "Yêu thích chung",
+        algorithm: "Thuật toán:",
+        algo_normal: "Bình thường (Trội)",
+        algo_vibrant: "Khác biệt (Sống động)",
+        algo_warm: "Ấm",
+        algo_cold: "Lạnh"
     },
     ca: {
         subtitle: "Extractor de paletes de colors fora de línia",
@@ -345,7 +400,12 @@ const translations = {
         tooltip_add_color: "Afegir color seleccionat",
         tooltip_delete_palette: "Eliminar paleta",
         tooltip_save_favorite: "Desa als preferits",
-        global_palette: "Favorits Generals"
+        global_palette: "Favorits Generals",
+        algorithm: "Algoritme:",
+        algo_normal: "Normal (Dominant)",
+        algo_vibrant: "Diferent (Vibrant)",
+        algo_warm: "Càlid",
+        algo_cold: "Fred"
     },
     nl: {
         subtitle: "Offline kleurenpalet extractor",
@@ -374,7 +434,12 @@ const translations = {
         tooltip_add_color: "Geselecteerde kleur toevoegen",
         tooltip_delete_palette: "Palet verwijderen",
         tooltip_save_favorite: "Opslaan in favorieten",
-        global_palette: "Algemene favorieten"
+        global_palette: "Algemene favorieten",
+        algorithm: "Algoritme:",
+        algo_normal: "Normaal (Dominant)",
+        algo_vibrant: "Verschillend (Levendig)",
+        algo_warm: "Warm",
+        algo_cold: "Koud"
     },
     pl: {
         subtitle: "Ekstraktor palety kolorów offline",
@@ -403,7 +468,12 @@ const translations = {
         tooltip_add_color: "Dodaj wybrany kolor",
         tooltip_delete_palette: "Usuń paletę",
         tooltip_save_favorite: "Zapisz w ulubionych",
-        global_palette: "Ulubione Ogólne"
+        global_palette: "Ulubione Ogólne",
+        algorithm: "Algorytm:",
+        algo_normal: "Normalny (Dominujący)",
+        algo_vibrant: "Różne (Żywe)",
+        algo_warm: "Ciepły",
+        algo_cold: "Zimny"
     }
 };
 

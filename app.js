@@ -364,6 +364,9 @@ document.addEventListener('DOMContentLoaded', () => {
             freqMap.set(key, (freqMap.get(key) || 0) + 1);
         });
 
+        const algoSelect = document.getElementById('extract-algo');
+        const algo = algoSelect ? algoSelect.value : 'normal';
+
         const sortedByFreq = Array.from(freqMap.entries())
             .sort((a, b) => b[1] - a[1])
             .map(entry => {
@@ -371,19 +374,68 @@ document.addEventListener('DOMContentLoaded', () => {
                 return {r, g, b, freq: entry[1]};
             });
 
-        for (const c of sortedByFreq) {
+        let pool = Array.from(freqMap.entries())
+            .map(entry => {
+                const [r, g, b] = entry[0].split(',').map(Number);
+                const hsv = window.rgbToHsv ? window.rgbToHsv(r, g, b) : {h:0, s:0, v:0};
+                return {r, g, b, freq: entry[1], h: hsv.h, s: hsv.s, v: hsv.v};
+            });
+
+        if (algo === 'warm') {
+            pool = pool.filter(c => c.s > 15 && (c.h <= 60 || c.h >= 300));
+        } else if (algo === 'cold') {
+            pool = pool.filter(c => c.s > 15 && (c.h >= 90 && c.h <= 270));
+        }
+
+        if (algo === 'vibrant') {
+            // Saturated colors boosted
+            pool.sort((a, b) => {
+                const scoreA = (a.s * a.v) * Math.log(a.freq + 1);
+                const scoreB = (b.s * b.v) * Math.log(b.freq + 1);
+                return scoreB - scoreA;
+            });
+        } else {
+            // Normal fallback is pure frequency
+            pool.sort((a, b) => b.freq - a.freq);
+        }
+
+        for (const c of pool) {
             if (uniqueColors.length >= count) break;
             
             let isTooSimilar = false;
+            let currentMinDist = algo === 'vibrant' ? 60 : MIN_DISTANCE;
+            
             for (const u of uniqueColors) {
-                const dist = Math.sqrt(Math.pow(c.r - u.r, 2) + Math.pow(c.g - u.g, 2) + Math.pow(c.b - u.b, 2));
-                if (dist < MIN_DISTANCE) {
+                const dist = Math.sqrt(
+                    Math.pow(c.r - u.r, 2) + 
+                    Math.pow(c.g - u.g, 2) + 
+                    Math.pow(c.b - u.b, 2)
+                );
+                if (dist < currentMinDist) {
                     isTooSimilar = true;
                     break;
                 }
             }
-            if (!isTooSimilar) {
-                uniqueColors.push(c);
+            if (!isTooSimilar) uniqueColors.push(c);
+        }
+        
+        // If vibrant or filtered requested but we didn't find enough colors, fallback to normal sort to fill
+        if (uniqueColors.length < count && algo !== 'normal') {
+            const backupPool = Array.from(freqMap.entries())
+                .map(entry => {
+                    const [r, g, b] = entry[0].split(',').map(Number);
+                    return {r, g, b, freq: entry[1]};
+                })
+                .sort((a, b) => b.freq - a.freq);
+                
+            for (const c of backupPool) {
+                if (uniqueColors.length >= count) break;
+                let isTooSimilar = false;
+                for (const u of uniqueColors) {
+                    const dist = Math.sqrt(Math.pow(c.r - u.r, 2) + Math.pow(c.g - u.g, 2) + Math.pow(c.b - u.b, 2));
+                    if (dist < MIN_DISTANCE) { isTooSimilar = true; break; }
+                }
+                if (!isTooSimilar) uniqueColors.push(c);
             }
         }
 
