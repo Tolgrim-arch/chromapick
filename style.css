@@ -70,10 +70,12 @@ main {
 
 .upload-section {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex: 1;
     min-height: 50vh;
+    gap: 2rem;
 }
 
 .drop-zone {
