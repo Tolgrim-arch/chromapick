@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chromapick - Extractor de Paletas</title>
-    <link rel="stylesheet" href="style.css?v=26">
+    <link rel="stylesheet" href="style.css?v=27">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#f9fafb">
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
@@ -41,13 +41,13 @@
             <section class="workspace" id="workspace" style="display: none;">
                 <div class="canvas-container">
                     <canvas id="image-canvas"></canvas>
-                    <div class="magnifier" id="magnifier"></div>
+                    
                 </div>
                 
                 <aside class="color-panel">
                     <div class="current-color">
                         <h3>Color Seleccionado</h3>
-                        <div class="color-preview" id="current-color-preview"></div>
+                        <div class="color-preview" id="current-color-preview"></div><button id="extractor-eyedropper-btn" class="btn-primary full-width mt-1" style="margin-top: 10px; margin-bottom: 15px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 5px;"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg> Pick from screen</button>
                         <div class="color-values">
                             <input type="text" id="hex-value" readonly>
                             <button class="copy-btn" data-target="hex-value">Copiar</button>
@@ -124,7 +124,7 @@
         </div>
     </main>
 
-    <script src="app.js?v=22"></script>
+    <script src="app.js?v=23"></script>
     <script src="converter.js?v=2"></script>
     <script>
         if ('serviceWorker' in navigator) {
