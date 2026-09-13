@@ -244,6 +244,8 @@ h3 {
   height: 120px;
   width: 100%;
   overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .color {
