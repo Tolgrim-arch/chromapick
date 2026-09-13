@@ -151,11 +151,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Presets ---
     const presetImg = document.getElementById('demo-img-1');
     if (presetImg) {
-        presetImg.addEventListener('click', () => {
+        const loadPreset = () => {
             fetch(presetImg.src)
                 .then(res => res.blob())
                 .then(blob => processFile(blob));
-        });
+        };
+        
+        presetImg.addEventListener('click', loadPreset);
+        
+        // Autocargar el preset por defecto al arrancar la app
+        window.addEventListener('load', loadPreset);
     }
 
     // --- Color Picking & Canvas Events ---
