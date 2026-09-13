@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const hex = getSystemCurrentHex();
             if (!hex) {
                 e.target.checked = false;
-                if(window.showError) window.showError("Primero debes extraer o seleccionar un color."); else alert("Primero debes extraer o seleccionar un color.");
+                if(window.showError) window.showError(window.translations?.[document.documentElement.lang]?.error_no_color || "Primero debes extraer o seleccionar un color."); else alert(window.translations?.[document.documentElement.lang]?.error_no_color || "Primero debes extraer o seleccionar un color.");
                 return;
             }
             
@@ -176,17 +176,23 @@ function renderPalettes() {
         
         const title = document.createElement('div');
         title.className = 'palette-title';
-        title.textContent = pal.name;
-        // Allow renaming
-        title.style.cursor = 'pointer';
-        title.title = "Renombrar";
-        title.addEventListener('click', async () => {
-            const newName = await showPrompt("Nuevo nombre:", pal.name);
-            if (newName && newName.trim()) {
-                pal.name = newName.trim();
-                savePalettes();
-            }
-        });
+        
+        if (pal.id === 'global') {
+            title.textContent = window.translations?.[document.documentElement.lang]?.global_palette || "Favoritos Generales";
+            title.style.cursor = 'default';
+        } else {
+            title.textContent = pal.name;
+            // Allow renaming
+            title.style.cursor = 'pointer';
+            title.title = window.translations?.[document.documentElement.lang]?.tooltip_rename || "Renombrar";
+            title.addEventListener('click', async () => {
+                const newName = await showPrompt(window.translations?.[document.documentElement.lang]?.rename_palette || "Nuevo nombre:", pal.name);
+                if (newName && newName.trim()) {
+                    pal.name = newName.trim();
+                    savePalettes();
+                }
+            });
+        }
         
         const actions = document.createElement('div');
         actions.className = 'palette-actions';
@@ -194,12 +200,12 @@ function renderPalettes() {
         // Add color button
         const addBtn = document.createElement('button');
         addBtn.className = 'icon-btn';
-        addBtn.title = "Añadir color seleccionado";
+        addBtn.title = window.translations?.[document.documentElement.lang]?.tooltip_add_color || "Añadir color seleccionado";
         addBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>';
         addBtn.addEventListener('click', () => {
             const hex = getSystemCurrentHex();
             if (!hex) {
-                if(window.showError) window.showError("Primero debes extraer o seleccionar un color."); else alert("Primero debes extraer o seleccionar un color.");
+                if(window.showError) window.showError(window.translations?.[document.documentElement.lang]?.error_no_color || "Primero debes extraer o seleccionar un color."); else alert(window.translations?.[document.documentElement.lang]?.error_no_color || "Primero debes extraer o seleccionar un color.");
                 return;
             }
             if (!pal.colors.includes(hex)) {
@@ -214,10 +220,10 @@ function renderPalettes() {
             const delBtn = document.createElement('button');
             delBtn.className = 'icon-btn';
             delBtn.style.color = '#ef4444';
-            delBtn.title = "Borrar paleta";
+            delBtn.title = window.translations?.[document.documentElement.lang]?.tooltip_delete_palette || "Borrar paleta";
             delBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>';
             delBtn.addEventListener('click', () => {
-                if(confirm("¿Eliminar paleta?")) {
+                if(confirm(window.translations?.[document.documentElement.lang]?.confirm_delete || "¿Eliminar paleta?")) {
                     palettes = palettes.filter(p => p.id !== pal.id);
                     savePalettes();
                 }
