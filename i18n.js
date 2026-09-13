@@ -528,3 +528,5 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+window.translations = translations;
