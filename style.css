@@ -1,3 +1,7 @@
+﻿* {
+    box-sizing: border-box;
+}
+
 :root {
     --bg-color: #f3f4f6;
     --panel-bg: #ffffff;
@@ -129,7 +133,6 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
     position: relative;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-md);
@@ -382,7 +385,7 @@ h3 {
     width: 100%; /* Asegura que ocupe el ancho en móviles */
 }
 
-/* Optimizaciones para M�viles */
+/* Optimizaciones para M�viles */
 @media (max-width: 768px) {
     header { padding: 1.5rem 1rem; }
     header h1 { font-size: 1.5rem; }
