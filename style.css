@@ -1,4 +1,4 @@
-ï»¿* {
+* {
     box-sizing: border-box;
 }
 
@@ -17,6 +17,10 @@
     
     margin: 0;
     padding: 0;
+}
+
+html, body {
+    overflow-x: hidden;
 }
 
 body {
@@ -167,11 +171,11 @@ main {
     display: none;
     background-repeat: no-repeat;
     z-index: 100;
-    transform: translate(-50%, -120%); /* Flota por encima del dedo para mÃ³viles */
+    transform: translate(-50%, -120%); /* Flota por encima del dedo para móviles */
     image-rendering: pixelated; /* Crucial: renderizado de pixeles crudos en zoom */
 }
 
-/* CuadrÃ­cula de la lupa */
+/* Cuadrícula de la lupa */
 .magnifier::before {
     content: '';
     position: absolute;
@@ -185,7 +189,7 @@ main {
     pointer-events: none;
 }
 
-/* Puntero central (pÃ­xel exacto) */
+/* Puntero central (píxel exacto) */
 .magnifier::after {
     content: '';
     position: absolute;
@@ -372,7 +376,7 @@ h3 {
   opacity: 1;
 }
 
-/* Estilos especÃ­ficos de cada botÃ³n */
+/* Estilos específicos de cada botón */
 .color-values .copy-btn {
     padding: 0.6rem 1.2rem;
     border-radius: 0 6px 6px 0;
@@ -382,10 +386,10 @@ h3 {
     margin-top: 1rem;
     padding: 0.85rem;
     border-radius: 6px;
-    width: 100%; /* Asegura que ocupe el ancho en mÃ³viles */
+    width: 100%; /* Asegura que ocupe el ancho en móviles */
 }
 
-/* Optimizaciones para Mï¿½viles */
+/* Optimizaciones para M?viles */
 @media (max-width: 768px) {
     header { padding: 1.5rem 1rem; }
     header h1 { font-size: 1.5rem; }
