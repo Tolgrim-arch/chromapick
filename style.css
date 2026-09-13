@@ -243,7 +243,6 @@ h3 {
   display: flex;
   height: 120px; /* Reducido de 300px para que encaje mejor en el panel */
   width: 100%;
-  border-radius: 12px;
   overflow: hidden;
 }
 
@@ -272,19 +271,16 @@ h3 {
   opacity: 0;
   transition: opacity 0.1s linear;
   pointer-events: none;
-  /* Rotate text if there are too many colors to fit */
-  transform: rotate(-90deg);
 }
 
 .color:hover {
-  flex: 3; /* Increased expansion so text is clearly visible */
+  flex: 2; /* Regresado a flex 2 como en el original */
   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px 0px;
   z-index: 10;
 }
 
 .color:hover span {
   opacity: 1;
-  transform: rotate(0deg); /* Reset rotation on hover to read easily */
 }
 
 /* Estilos específicos de cada botón */

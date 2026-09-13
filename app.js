@@ -160,12 +160,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Simple Palette Extraction ---
 
     function extractPalette() {
-        // Simple extraction: sample pixels at regular intervals
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-        const colorMap = new Map();
+        const colors = [];
         
-        // Step size based on image size to avoid freezing on large images
-        const step = Math.floor((canvas.width * canvas.height) / 10000) * 4 || 4; 
+        const step = Math.floor((canvas.width * canvas.height) / 5000) * 4 || 4; 
         
         for (let i = 0; i < imageData.length; i += step) {
             const r = imageData[i];
@@ -173,29 +171,57 @@ document.addEventListener('DOMContentLoaded', () => {
             const b = imageData[i+2];
             const a = imageData[i+3];
             
-            if (a < 128) continue; // Skip transparent pixels
-            
-            // Round colors to group similar ones
-            const rr = Math.round(r / 20) * 20;
-            const gg = Math.round(g / 20) * 20;
-            const bb = Math.round(b / 20) * 20;
-            
-            const key = `${rr},${gg},${bb}`;
-            colorMap.set(key, (colorMap.get(key) || 0) + 1);
+            if (a < 128) continue; 
+            colors.push({r, g, b});
         }
 
-        // Sort by frequency
-        const sortedColors = Array.from(colorMap.entries()).sort((a, b) => b[1] - a[1]);
-        
+        // Encontrar colores únicos por distancia
+        const uniqueColors = [];
         const count = parseInt(colorCountInput.value, 10) || 12;
+        const MIN_DISTANCE = 30; // Distancia mínima para considerar un color "diferente"
 
-        // Take top colors
-        const topColors = sortedColors.slice(0, count).map(entry => {
-            const [r, g, b] = entry[0].split(',').map(Number);
-            return { r, g, b };
+        // Contar frecuencias sin agrupar tan agresivamente
+        const freqMap = new Map();
+        colors.forEach(c => {
+            const key = `${c.r},${c.g},${c.b}`;
+            freqMap.set(key, (freqMap.get(key) || 0) + 1);
         });
 
-        renderPalette(topColors);
+        const sortedByFreq = Array.from(freqMap.entries())
+            .sort((a, b) => b[1] - a[1])
+            .map(entry => {
+                const [r, g, b] = entry[0].split(',').map(Number);
+                return {r, g, b, freq: entry[1]};
+            });
+
+        for (const c of sortedByFreq) {
+            if (uniqueColors.length >= count) break;
+            
+            let isTooSimilar = false;
+            for (const u of uniqueColors) {
+                const dist = Math.sqrt(Math.pow(c.r - u.r, 2) + Math.pow(c.g - u.g, 2) + Math.pow(c.b - u.b, 2));
+                if (dist < MIN_DISTANCE) {
+                    isTooSimilar = true;
+                    break;
+                }
+            }
+            if (!isTooSimilar) {
+                uniqueColors.push(c);
+            }
+        }
+
+        // Si aún nos faltan colores para llegar al count (ej. una imagen con solo 2 colores)
+        // rellenamos con los siguientes más frecuentes sin importar la similitud
+        if (uniqueColors.length < count) {
+            for (const c of sortedByFreq) {
+                if (uniqueColors.length >= count) break;
+                if (!uniqueColors.find(u => u.r === c.r && u.g === c.g && u.b === c.b)) {
+                    uniqueColors.push(c);
+                }
+            }
+        }
+
+        renderPalette(uniqueColors);
     }
 
     function renderPalette(colors) {
@@ -212,7 +238,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             swatch.addEventListener('click', () => {
                 updateCurrentColor(c.r, c.g, c.b);
-                navigator.clipboard.writeText(hex).catch(() => {});
+                navigator.clipboard.writeText(hex).then(() => {
+                    const originalText = span.textContent;
+                    span.textContent = '¡Copiado!';
+                    setTimeout(() => {
+                        span.textContent = originalText;
+                    }, 1000);
+                }).catch(() => {});
             });
             
             paletteContainer.appendChild(swatch);
