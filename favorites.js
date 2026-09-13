@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const hex = getSystemCurrentHex();
             if (!hex) {
                 e.target.checked = false;
-                alert("Primero debes extraer o seleccionar un color.");
+                if(window.showError) window.showError("Primero debes extraer o seleccionar un color."); else alert("Primero debes extraer o seleccionar un color.");
                 return;
             }
             
@@ -199,7 +199,7 @@ function renderPalettes() {
         addBtn.addEventListener('click', () => {
             const hex = getSystemCurrentHex();
             if (!hex) {
-                alert("Primero debes extraer o seleccionar un color.");
+                if(window.showError) window.showError("Primero debes extraer o seleccionar un color."); else alert("Primero debes extraer o seleccionar un color.");
                 return;
             }
             if (!pal.colors.includes(hex)) {

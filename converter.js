@@ -252,7 +252,7 @@ const btnPickIcon = document.getElementById('btn-eyedropper-icon');
 
 function triggerEyeDropper() {
     if (!window.EyeDropper) {
-        alert("Tu navegador no soporta la API nativa de EyeDropper. Prueba con Chrome o Edge.");
+        if(window.showError) window.showError("Tu navegador no soporta la API nativa de EyeDropper. Prueba con Chrome o Edge."); else alert("Tu navegador no soporta la API nativa de EyeDropper.");
         return;
     }
     const eyeDropper = new EyeDropper();

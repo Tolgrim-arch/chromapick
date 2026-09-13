@@ -1,9 +1,5 @@
-﻿with open('i18n.js', 'r', encoding='utf-8') as f:
+﻿with open('app.js', 'r', encoding='utf-8') as f:
     js = f.read()
 
-js = js.replace('name_palette: "Palette name:"', 'name_palette: "Palette name:",\n        cancel: "Cancel",\n        ok: "OK"')
-js = js.replace('name_palette: "Nombre de la paleta:"', 'name_palette: "Nombre de la paleta:",\n        cancel: "Cancelar",\n        ok: "Aceptar"')
-
-with open('i18n.js', 'w', encoding='utf-8') as f:
-    f.write(js)
-print("Done")
+# I need to fix the invalid syntax from the previous python script where backticks were stripped or missing.
+# Wait, let's just git checkout app.js and re-apply correctly.
