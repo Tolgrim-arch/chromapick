@@ -106,29 +106,38 @@ document.addEventListener('DOMContentLoaded', () => {
             clientY = e.touches[0].clientY;
         }
 
-        const x = clientX - rect.left;
-        const y = clientY - rect.top;
+        const cssX = clientX - rect.left;
+        const cssY = clientY - rect.top;
 
         // Solo mostrar si estamos dentro del canvas
-        if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+        if (cssX >= 0 && cssX <= rect.width && cssY >= 0 && cssY <= rect.height) {
             magnifier.style.display = 'block';
-            magnifier.style.left = `${x}px`;
-            magnifier.style.top = `${y}px`;
+            magnifier.style.left = `${cssX}px`;
+            magnifier.style.top = `${cssY}px`;
 
-            // Calcular coordenadas relativas a la imagen nativa
+            // 1. Calcular el píxel EXACTO (entero) que estamos tocando en la imagen original
             const scaleX = canvas.width / rect.width;
             const scaleY = canvas.height / rect.height;
-            const imageX = x * scaleX;
-            const imageY = y * scaleY;
+            const actualX = Math.floor(cssX * scaleX);
+            const actualY = Math.floor(cssY * scaleY);
 
-            // Configurar el fondo de la lupa
+            // 2. Escalar el tamaño de la imagen original por el multiplicador de zoom
+            const zoomedWidth = currentImage.width * MAGNIFIER_ZOOM;
+            const zoomedHeight = currentImage.height * MAGNIFIER_ZOOM;
             magnifier.style.backgroundImage = `url('${currentImage.src}')`;
-            magnifier.style.backgroundSize = `${rect.width * MAGNIFIER_ZOOM}px ${rect.height * MAGNIFIER_ZOOM}px`;
+            magnifier.style.backgroundSize = `${zoomedWidth}px ${zoomedHeight}px`;
             
-            // Posicionar el fondo para que haga zoom sobre el punto exacto
-            const bgX = -(x * MAGNIFIER_ZOOM - magnifier.offsetWidth / 2);
-            const bgY = -(y * MAGNIFIER_ZOOM - magnifier.offsetHeight / 2);
+            // 3. Matemáticas de alineación: Centrar ese píxel exacto en el medio geométrico de la lupa
+            const centerX = magnifier.offsetWidth / 2;
+            const centerY = magnifier.offsetHeight / 2;
+            const bgX = centerX - (actualX * MAGNIFIER_ZOOM + MAGNIFIER_ZOOM / 2);
+            const bgY = centerY - (actualY * MAGNIFIER_ZOOM + MAGNIFIER_ZOOM / 2);
+            
             magnifier.style.backgroundPosition = `${bgX}px ${bgY}px`;
+            
+            // 4. Sincronizar la cuadrícula CSS para que abrace los píxeles perfectamente
+            magnifier.style.setProperty('--grid-x', `${bgX}px`);
+            magnifier.style.setProperty('--grid-y', `${bgY}px`);
         } else {
             magnifier.style.display = 'none';
         }
