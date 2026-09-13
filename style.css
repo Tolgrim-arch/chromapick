@@ -1,4 +1,4 @@
-* {
+ï»¿* {
     box-sizing: border-box;
 }
 
@@ -73,7 +73,6 @@ main {
     padding: 2rem 1rem;
     max-width: 1200px;
     margin: 0 auto;
-    width: 100%;
 }
 
 .upload-section {
@@ -174,11 +173,11 @@ main {
     display: none;
     background-repeat: no-repeat;
     z-index: 100;
-    transform: translate(-50%, -120%); /* Flota por encima del dedo para móviles */
+    transform: translate(-50%, -120%); /* Flota por encima del dedo para mï¿½viles */
     image-rendering: pixelated; /* Crucial: renderizado de pixeles crudos en zoom */
 }
 
-/* Cuadrícula de la lupa */
+/* Cuadrï¿½cula de la lupa */
 .magnifier::before {
     content: '';
     position: absolute;
@@ -192,7 +191,7 @@ main {
     pointer-events: none;
 }
 
-/* Puntero central (píxel exacto) */
+/* Puntero central (pï¿½xel exacto) */
 .magnifier::after {
     content: '';
     position: absolute;
@@ -379,7 +378,7 @@ h3 {
   opacity: 1;
 }
 
-/* Estilos específicos de cada botón */
+/* Estilos especï¿½ficos de cada botï¿½n */
 .color-values .copy-btn {
     padding: 0.6rem 1.2rem;
     border-radius: 0 6px 6px 0;
@@ -389,7 +388,7 @@ h3 {
     margin-top: 1rem;
     padding: 0.85rem;
     border-radius: 6px;
-    width: 100%; /* Asegura que ocupe el ancho en móviles */
+    width: 100%; /* Asegura que ocupe el ancho en mï¿½viles */
 }
 
 /* Optimizaciones para M?viles */
@@ -451,7 +450,6 @@ h3 {
     flex: 1;
     max-width: 900px;
     margin: 0 auto;
-    width: 100%;
     background: white;
     border-radius: 16px;
     padding: 2rem;
