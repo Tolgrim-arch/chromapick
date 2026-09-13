@@ -1,3 +1,40 @@
+function showPrompt(message, defaultValue = "") {
+    return new Promise((resolve) => {
+        const overlay = document.getElementById('custom-prompt-overlay');
+        const msgEl = document.getElementById('custom-prompt-message');
+        const inputEl = document.getElementById('custom-prompt-input');
+        const btnOk = document.getElementById('custom-prompt-ok');
+        const btnCancel = document.getElementById('custom-prompt-cancel');
+        
+        msgEl.textContent = message;
+        
+        btnCancel.textContent = window.translations?.[document.documentElement.lang]?.cancel || "Cancelar";
+        btnOk.textContent = window.translations?.[document.documentElement.lang]?.ok || "Aceptar";
+        
+        inputEl.value = defaultValue;
+        overlay.style.display = 'flex';
+        inputEl.focus();
+        
+        const cleanup = () => {
+            overlay.style.display = 'none';
+            btnOk.removeEventListener('click', onOk);
+            btnCancel.removeEventListener('click', onCancel);
+            inputEl.removeEventListener('keydown', onKey);
+        };
+        
+        const onOk = () => { cleanup(); resolve(inputEl.value); };
+        const onCancel = () => { cleanup(); resolve(null); };
+        const onKey = (e) => {
+            if (e.key === 'Enter') onOk();
+            if (e.key === 'Escape') onCancel();
+        };
+        
+        btnOk.addEventListener('click', onOk);
+        btnCancel.addEventListener('click', onCancel);
+        inputEl.addEventListener('keydown', onKey);
+    });
+}
+
 const STORAGE_KEY = 'chromapick_palettes';
 let palettes = [];
 
@@ -28,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Setup New Palette button
-    document.getElementById('btn-new-palette').addEventListener('click', () => {
-        const name = prompt(window.translations?.[document.documentElement.lang]?.name_palette || "Nombre de la paleta:");
+    document.getElementById('btn-new-palette').addEventListener('click', async () => {
+        const name = await showPrompt(window.translations?.[document.documentElement.lang]?.name_palette || "Nombre de la paleta:");
         if (name && name.trim()) {
             palettes.push({
                 id: 'pal_' + Date.now(),
@@ -143,8 +180,8 @@ function renderPalettes() {
         // Allow renaming
         title.style.cursor = 'pointer';
         title.title = "Renombrar";
-        title.addEventListener('click', () => {
-            const newName = prompt("Nuevo nombre:", pal.name);
+        title.addEventListener('click', async () => {
+            const newName = await showPrompt("Nuevo nombre:", pal.name);
             if (newName && newName.trim()) {
                 pal.name = newName.trim();
                 savePalettes();

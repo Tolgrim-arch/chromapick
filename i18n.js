@@ -16,7 +16,9 @@ const translations = {
         tab_favorites: "Favorites",
         saved_palettes: "Saved<br>Palettes",
         new_palette: "New<br>Palette",
-        name_palette: "Palette name:"
+        name_palette: "Palette name:",
+        cancel: "Cancel",
+        ok: "OK"
     },
     es: {
         subtitle: "Extractor de paletas de color offline",
@@ -35,7 +37,9 @@ const translations = {
         tab_favorites: "Favoritos",
         saved_palettes: "Paletas<br>Guardadas",
         new_palette: "Nueva<br>Paleta",
-        name_palette: "Nombre de la paleta:"
+        name_palette: "Nombre de la paleta:",
+        cancel: "Cancelar",
+        ok: "Aceptar"
     },
     zh: {
         subtitle: "离线调色板提取器",

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chromapick - Extractor de Paletas</title>
-    <link rel="stylesheet" href="style.css?v=39">
+    <link rel="stylesheet" href="style.css?v=40">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#f9fafb">
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
@@ -188,7 +188,7 @@
     </div>
 </main>
 
-    <script src="i18n.js?v=3"></script>
+    <script src="i18n.js?v=4"></script>
     <script src="app.js?v=30"></script>
     <script src="converter.js?v=6"></script>
     <script>
@@ -202,7 +202,20 @@
             });
         }
     </script>
-    <script src="favorites.js?v=2"></script>
+    <script src="favorites.js?v=3"></script>
+
+    <!-- Custom Prompt Modal -->
+    <div id="custom-prompt-overlay" class="modal-overlay">
+        <div class="modal-box">
+            <h3 id="custom-prompt-message"></h3>
+            <input type="text" id="custom-prompt-input" autocomplete="off">
+            <div class="modal-actions">
+                <button id="custom-prompt-cancel" class="icon-btn" style="padding: 0.5rem 1rem;">Cancelar</button>
+                <button id="custom-prompt-ok" class="btn-primary" style="padding: 0.5rem 1rem;">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
 
