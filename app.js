@@ -286,6 +286,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     colorCountInput.addEventListener('input', (e) => {
         colorCountDisplay.textContent = e.target.value;
+    });
+
+    colorCountInput.addEventListener('change', (e) => {
         if (currentImage) {
             extractPalette();
         }

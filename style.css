@@ -1,4 +1,4 @@
-﻿* {
+* {
     box-sizing: border-box;
 }
 
@@ -173,11 +173,11 @@ main {
     display: none;
     background-repeat: no-repeat;
     z-index: 100;
-    transform: translate(-50%, -120%); /* Flota por encima del dedo para m�viles */
+    transform: translate(-50%, -120%); /* Flota por encima del dedo para m?viles */
     image-rendering: pixelated; /* Crucial: renderizado de pixeles crudos en zoom */
 }
 
-/* Cuadr�cula de la lupa */
+/* Cuadr?cula de la lupa */
 .magnifier::before {
     content: '';
     position: absolute;
@@ -191,7 +191,7 @@ main {
     pointer-events: none;
 }
 
-/* Puntero central (p�xel exacto) */
+/* Puntero central (p?xel exacto) */
 .magnifier::after {
     content: '';
     position: absolute;
@@ -278,6 +278,7 @@ h3 {
 }
 
 .color-values input {
+    min-width: 0;
     flex: 1;
     padding: 0.6rem;
     background-color: #f9fafb;
@@ -378,7 +379,7 @@ h3 {
   opacity: 1;
 }
 
-/* Estilos espec�ficos de cada bot�n */
+/* Estilos espec?ficos de cada bot?n */
 .color-values .copy-btn {
     padding: 0.6rem 1.2rem;
     border-radius: 0 6px 6px 0;
@@ -388,7 +389,7 @@ h3 {
     margin-top: 1rem;
     padding: 0.85rem;
     border-radius: 6px;
-    width: 100%; /* Asegura que ocupe el ancho en m�viles */
+    width: 100%; /* Asegura que ocupe el ancho en m?viles */
 }
 
 /* Optimizaciones para M?viles */
