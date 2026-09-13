@@ -26,7 +26,7 @@ const translations = {
         extracted_palette: "Paleta Extraída",
         amount: "Cantidad: ",
         load_another: "Cargar otra imagen",
-        pick_screen: "Pick from screen",
+        pick_screen: "Extraer de pantalla",
         error_eyedropper: "Tu navegador no soporta la API nativa de EyeDropper."
     },
     zh: {
@@ -233,6 +233,13 @@ function applyTranslations() {
             } else {
                 el.innerHTML = dict[key]; // innerHTML allows <strong> tags in dropzone
             }
+        }
+    });
+
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        const key = el.getAttribute('data-i18n-title');
+        if (dict[key]) {
+            el.title = dict[key];
         }
     });
     
