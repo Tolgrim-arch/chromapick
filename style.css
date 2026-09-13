@@ -241,9 +241,9 @@ h3 {
 /* From Uiverse.io by oneMoreYeti */ 
 .palette {
   display: flex;
-  height: 120px; /* Reducido de 300px para que encaje mejor en el panel */
+  height: 200px;
   width: 100%;
-  overflow: hidden;
+  border-radius: 15px;
 }
 
 .color {
