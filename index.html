@@ -48,7 +48,11 @@
 
                 <div class="extracted-palette">
                     <h3>Paleta Extraída</h3>
-                    <div class="palette-container" id="palette-container">
+                    <div class="color-count-control">
+                        <label for="color-count">Cantidad: <span id="color-count-display">12</span></label>
+                        <input type="range" id="color-count" min="3" max="12" value="12">
+                    </div>
+                    <div class="container-items" id="palette-container">
                         <!-- Colors will be injected here -->
                     </div>
                 </div>

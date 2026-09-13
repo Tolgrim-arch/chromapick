@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const rgbInput = document.getElementById('rgb-value');
     const copyBtns = document.querySelectorAll('.copy-btn');
     const paletteContainer = document.getElementById('palette-container');
+    
+    const colorCountInput = document.getElementById('color-count');
+    const colorCountDisplay = document.getElementById('color-count-display');
 
     let currentImage = null;
 
@@ -145,6 +148,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- Color Count Control ---
+    
+    colorCountInput.addEventListener('input', (e) => {
+        colorCountDisplay.textContent = e.target.value;
+        if (currentImage) {
+            extractPalette();
+        }
+    });
+
     // --- Simple Palette Extraction ---
 
     function extractPalette() {
@@ -175,8 +187,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Sort by frequency
         const sortedColors = Array.from(colorMap.entries()).sort((a, b) => b[1] - a[1]);
         
-        // Take top 12 colors
-        const topColors = sortedColors.slice(0, 12).map(entry => {
+        const count = parseInt(colorCountInput.value, 10) || 12;
+
+        // Take top colors
+        const topColors = sortedColors.slice(0, count).map(entry => {
             const [r, g, b] = entry[0].split(',').map(Number);
             return { r, g, b };
         });
@@ -187,12 +201,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderPalette(colors) {
         paletteContainer.innerHTML = '';
         colors.forEach(c => {
-            const swatch = document.createElement('div');
-            swatch.className = 'palette-swatch';
-            swatch.style.backgroundColor = `rgb(${c.r}, ${c.g}, ${c.b})`;
+            const hex = rgbToHex(c.r, c.g, c.b);
+            const swatch = document.createElement('button');
+            swatch.className = 'item-color';
+            swatch.style.setProperty('--color', hex);
+            swatch.setAttribute('aria-color', hex);
             
             swatch.addEventListener('click', () => {
                 updateCurrentColor(c.r, c.g, c.b);
+                // Opcional: copiar directamente al portapapeles al hacer clic
+                navigator.clipboard.writeText(hex).catch(() => {});
             });
             
             paletteContainer.appendChild(swatch);
