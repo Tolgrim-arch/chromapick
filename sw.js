@@ -1,4 +1,4 @@
-const CACHE_NAME = 'chromapick-v7';
+const CACHE_NAME = 'chromapick-v8';
 const ASSETS = [
     './',
     './index.html',

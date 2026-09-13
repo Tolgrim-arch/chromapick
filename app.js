@@ -202,14 +202,16 @@ document.addEventListener('DOMContentLoaded', () => {
         paletteContainer.innerHTML = '';
         colors.forEach(c => {
             const hex = rgbToHex(c.r, c.g, c.b);
-            const swatch = document.createElement('button');
-            swatch.className = 'item-color';
-            swatch.style.setProperty('--color', hex);
-            swatch.setAttribute('aria-color', hex);
+            const swatch = document.createElement('div');
+            swatch.className = 'color';
+            swatch.style.backgroundColor = hex;
+            
+            const span = document.createElement('span');
+            span.textContent = hex;
+            swatch.appendChild(span);
             
             swatch.addEventListener('click', () => {
                 updateCurrentColor(c.r, c.g, c.b);
-                // Opcional: copiar directamente al portapapeles al hacer clic
                 navigator.clipboard.writeText(hex).catch(() => {});
             });
             
