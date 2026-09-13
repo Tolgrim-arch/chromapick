@@ -379,3 +379,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// --- TAB NAVIGATION ---
+document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.addEventListener('click', (e) => {
+        // Update active class on tabs
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        e.target.classList.add('active');
+        
+        // Show correct view
+        const targetView = e.target.getAttribute('data-view');
+        document.querySelectorAll('.app-view').forEach(view => {
+            if (view.id === targetView) {
+                view.style.display = 'flex';
+                // Trigger resize or UI updates if needed
+            } else {
+                view.style.display = 'none';
+            }
+        });
+    });
+});
+

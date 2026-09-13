@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chromapick - Extractor de Paletas</title>
-    <link rel="stylesheet" href="style.css?v=22">
+    <link rel="stylesheet" href="style.css?v=23">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#f9fafb">
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
@@ -16,61 +16,116 @@
             <img src="icons/icon.svg" alt="Chromapick Logo" class="app-logo">
             <h1>Chromapick</h1>
         </div>
-        <p>Extractor de paletas de color offline</p>
+        <nav class="app-nav">
+            <button class="nav-tab active" data-view="view-extractor">Extractor</button>
+            <button class="nav-tab" data-view="view-converter">Converter</button>
+        </nav>
     </header>
 
     <main>
-        <section class="upload-section" id="upload-section">
-            <div class="drop-zone" id="drop-zone">
-                <span class="drop-text">Arrastra una imagen aquí, haz clic, o presiona <strong>Ctrl+V</strong> para pegar</span>
-                <input type="file" id="file-input" accept="image/*" hidden>
-            </div>
-            
-            <div class="presets-container">
-                <p>O prueba con un ejemplo:</p>
-                <div class="preset-images">
-                    <img src="assets/preset1.png" alt="Cat Demo" class="preset-img" id="demo-img-1">
-                </div>
-            </div>
-        </section>
-
-        <section class="workspace" id="workspace" style="display: none;">
-            <div class="canvas-container">
-                <canvas id="image-canvas"></canvas>
-                <div class="magnifier" id="magnifier"></div>
-            </div>
-            
-            <aside class="color-panel">
-                <div class="current-color">
-                    <h3>Color Seleccionado</h3>
-                    <div class="color-preview" id="current-color-preview"></div>
-                    <div class="color-values">
-                        <input type="text" id="hex-value" readonly>
-                        <button class="copy-btn" data-target="hex-value">Copiar</button>
-                    </div>
-                    <div class="color-values">
-                        <input type="text" id="rgb-value" readonly>
-                        <button class="copy-btn" data-target="rgb-value">Copiar</button>
-                    </div>
-                </div>
-
-                <div class="extracted-palette">
-                    <h3>Paleta Extraída</h3>
-                    <div class="color-count-control">
-                        <label for="color-count">Cantidad: <span id="color-count-display">12</span></label>
-                        <input type="range" id="color-count" min="3" max="12" value="12">
-                    </div>
-                    <div class="palette" id="palette-container">
-                        <!-- Colors will be injected here -->
-                    </div>
+        <div id="view-extractor" class="app-view active">
+            <section class="upload-section" id="upload-section">
+                <div class="drop-zone" id="drop-zone">
+                    <span class="drop-text">Arrastra una imagen aquí, haz clic, o presiona <strong>Ctrl+V</strong> para pegar</span>
+                    <input type="file" id="file-input" accept="image/*" hidden>
                 </div>
                 
-                <button class="reset-btn" id="reset-btn">Cargar otra imagen</button>
-            </aside>
-        </section>
+                <div class="presets-container">
+                    <p>O prueba con un ejemplo:</p>
+                    <div class="preset-images">
+                        <img src="assets/preset1.png" alt="Cat Demo" class="preset-img" id="demo-img-1">
+                    </div>
+                </div>
+            </section>
+
+            <section class="workspace" id="workspace" style="display: none;">
+                <div class="canvas-container">
+                    <canvas id="image-canvas"></canvas>
+                    <div class="magnifier" id="magnifier"></div>
+                </div>
+                
+                <aside class="color-panel">
+                    <div class="current-color">
+                        <h3>Color Seleccionado</h3>
+                        <div class="color-preview" id="current-color-preview"></div>
+                        <div class="color-values">
+                            <input type="text" id="hex-value" readonly>
+                            <button class="copy-btn" data-target="hex-value">Copiar</button>
+                        </div>
+                        <div class="color-values">
+                            <input type="text" id="rgb-value" readonly>
+                            <button class="copy-btn" data-target="rgb-value">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="extracted-palette">
+                        <h3>Paleta Extraída</h3>
+                        <div class="color-count-control">
+                            <label for="color-count">Cantidad: <span id="color-count-display">12</span></label>
+                            <input type="range" id="color-count" min="3" max="12" value="12">
+                        </div>
+                        <div class="palette" id="palette-container">
+                            <!-- Colors will be injected here -->
+                        </div>
+                    </div>
+                    
+                    <button class="reset-btn" id="reset-btn">Cargar otra imagen</button>
+                </aside>
+            </section>
+        </div>
+
+        <div id="view-converter" class="app-view" style="display: none;">
+            <div class="converter-container">
+                <div class="converter-left">
+                    <div class="picker-card">
+                        <div class="sv-square" id="sv-square">
+                            <div class="sv-knob" id="sv-knob"></div>
+                        </div>
+                        <div class="hue-track">
+                            <input type="range" min="0" max="360" value="0" id="hue-slider" class="hue-slider">
+                        </div>
+                        <div class="picker-inputs">
+                            <input type="text" id="picker-hex" value="#ff0000">
+                            <div class="picker-color-preview" id="picker-preview"></div>
+                        </div>
+                        <div class="picker-actions">
+                            <select class="picker-select"><option>Picker</option></select>
+                            <button id="btn-eyedropper-icon" class="icon-btn" title="Pick from screen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                            </button>
+                            <button class="icon-btn copy-btn" data-target="picker-hex" title="Copy HEX">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            </button>
+                        </div>
+                        <button id="btn-pick-screen" class="btn-primary full-width mt-1" style="margin-top: 10px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 5px;"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg> 
+                            Pick from screen
+                        </button>
+                    </div>
+                </div>
+
+                <div class="converter-right">
+                    <div class="main-color-display" id="main-color-display">
+                        <h2 id="main-color-hex">#FF0000</h2>
+                    </div>
+                    
+                    <div class="formats-grid">
+                        <div class="format-row"><span class="format-label">HEX</span><input type="text" id="conv-hex" readonly value="#ff0000"><button class="copy-btn icon-btn" data-target="conv-hex"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+                        <div class="format-row"><span class="format-label">HSL</span><input type="text" id="conv-hsl" readonly value="0, 100%, 50%"><button class="copy-btn icon-btn" data-target="conv-hsl"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+                        <div class="format-row"><span class="format-label">RGB</span><input type="text" id="conv-rgb" readonly value="255, 0, 0"><button class="copy-btn icon-btn" data-target="conv-rgb"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+                        <div class="format-row"><span class="format-label">CMYK</span><input type="text" id="conv-cmyk" readonly value="0, 100, 100, 0"><button class="copy-btn icon-btn" data-target="conv-cmyk"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+                        <div class="format-row"><span class="format-label">LAB</span><input type="text" id="conv-lab" readonly value="53, 80, 67"><button class="copy-btn icon-btn" data-target="conv-lab"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+                        <div class="format-row"><span class="format-label">XYZ</span><input type="text" id="conv-xyz" readonly value="41, 21, 1"><button class="copy-btn icon-btn" data-target="conv-xyz"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+                        <div class="format-row"><span class="format-label">LUV</span><input type="text" id="conv-luv" readonly value="53, 175, 37"><button class="copy-btn icon-btn" data-target="conv-luv"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+                        <div class="format-row"><span class="format-label">HWB</span><input type="text" id="conv-hwb" readonly value="0, 0, 0"><button class="copy-btn icon-btn" data-target="conv-hwb"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <script src="app.js?v=20"></script>
+    <script src="app.js?v=21"></script>
+    <script src="converter.js?v=1"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
