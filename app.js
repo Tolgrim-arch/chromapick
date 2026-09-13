@@ -152,14 +152,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const presetImg = document.getElementById('demo-img-1');
     if (presetImg) {
         const loadPreset = () => {
-            fetch(presetImg.src)
-                .then(res => res.blob())
-                .then(blob => processFile(blob));
+            const img = new Image();
+            img.crossOrigin = "Anonymous";
+            img.onload = () => {
+                currentImage = img;
+                setupWorkspace();
+            };
+            img.src = presetImg.src;
         };
         
         presetImg.addEventListener('click', loadPreset);
         
-        // Ejecutar directamente sin depender del evento load (que podría haber disparado ya)
+        // Ejecutar directamente
         loadPreset();
     }
 
