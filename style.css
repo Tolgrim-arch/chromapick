@@ -241,14 +241,16 @@ h3 {
 /* From Uiverse.io by oneMoreYeti */ 
 .palette {
   display: flex;
-  height: 200px;
+  height: 120px;
   width: 100%;
   border-radius: 15px;
+  overflow: hidden;
 }
 
 .color {
   height: 100%;
   flex: 1;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -271,6 +273,7 @@ h3 {
   opacity: 0;
   transition: opacity 0.1s linear;
   pointer-events: none;
+  white-space: nowrap;
 }
 
 .color:hover {
