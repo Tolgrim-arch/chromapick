@@ -86,25 +86,130 @@ document.addEventListener('DOMContentLoaded', () => {
         hexInput.value = '';
         rgbInput.value = '';
         paletteContainer.innerHTML = '';
+        const magnifier = document.getElementById('magnifier');
+        if (magnifier) magnifier.style.display = 'none';
     });
 
-    // --- Color Picking ---
+    // --- Lógica de la Lupa (Magnifier) ---
+    const magnifier = document.getElementById('magnifier');
+    const MAGNIFIER_ZOOM = 4;
+    
+    function updateMagnifier(e) {
+        if (!currentImage) return;
+        const rect = canvas.getBoundingClientRect();
+        
+        let clientX = e.clientX;
+        let clientY = e.clientY;
+        
+        if (e.touches && e.touches.length > 0) {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+        }
+
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+
+        // Solo mostrar si estamos dentro del canvas
+        if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+            magnifier.style.display = 'block';
+            magnifier.style.left = `${x}px`;
+            magnifier.style.top = `${y}px`;
+
+            // Calcular coordenadas relativas a la imagen nativa
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            const imageX = x * scaleX;
+            const imageY = y * scaleY;
+
+            // Configurar el fondo de la lupa
+            magnifier.style.backgroundImage = `url('${currentImage.src}')`;
+            magnifier.style.backgroundSize = `${rect.width * MAGNIFIER_ZOOM}px ${rect.height * MAGNIFIER_ZOOM}px`;
+            
+            // Posicionar el fondo para que haga zoom sobre el punto exacto
+            const bgX = -(x * MAGNIFIER_ZOOM - magnifier.offsetWidth / 2);
+            const bgY = -(y * MAGNIFIER_ZOOM - magnifier.offsetHeight / 2);
+            magnifier.style.backgroundPosition = `${bgX}px ${bgY}px`;
+        } else {
+            magnifier.style.display = 'none';
+        }
+    }
+
+    // --- Soporte Pegar (Ctrl+V) ---
+    window.addEventListener('paste', (e) => {
+        if (e.clipboardData && e.clipboardData.items) {
+            for (let i = 0; i < e.clipboardData.items.length; i++) {
+                const item = e.clipboardData.items[i];
+                if (item.type.indexOf('image') !== -1) {
+                    const file = item.getAsFile();
+                    processFile(file);
+                    break;
+                }
+            }
+        }
+    });
+
+    // --- Presets ---
+    const presetImg = document.getElementById('demo-img-1');
+    if (presetImg) {
+        presetImg.addEventListener('click', () => {
+            fetch(presetImg.src)
+                .then(res => res.blob())
+                .then(blob => processFile(blob));
+        });
+    }
+
+    // --- Color Picking & Canvas Events ---
+
+    canvas.addEventListener('mousemove', (e) => {
+        updateMagnifier(e);
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        const x = (e.clientX - rect.left) * scaleX;
+        const y = (e.clientY - rect.top) * scaleY;
+        if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
+            const pixel = ctx.getImageData(x, y, 1, 1).data;
+            const hex = rgbToHex(pixel[0], pixel[1], pixel[2]);
+            canvas.title = hex;
+        }
+    });
+
+    canvas.addEventListener('touchmove', (e) => {
+        updateMagnifier(e);
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+        if (magnifier) magnifier.style.display = 'none';
+    });
+
+    canvas.addEventListener('touchend', () => {
+        if (magnifier) magnifier.style.display = 'none';
+    });
 
     canvas.addEventListener('click', (e) => {
         const rect = canvas.getBoundingClientRect();
-        // Calculate the actual scale because canvas might be scaled down via CSS max-width/max-height
         const scaleX = canvas.width / rect.width;
         const scaleY = canvas.height / rect.height;
+        
+        let clientX = e.clientX;
+        let clientY = e.clientY;
+        if (e.touches && e.touches.length > 0) {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+        }
 
-        const x = (e.clientX - rect.left) * scaleX;
-        const y = (e.clientY - rect.top) * scaleY;
-
-        const pixel = ctx.getImageData(x, y, 1, 1).data;
-        updateCurrentColor(pixel[0], pixel[1], pixel[2]);
+        const x = (clientX - rect.left) * scaleX;
+        const y = (clientY - rect.top) * scaleY;
+        
+        if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
+            const pixel = ctx.getImageData(x, y, 1, 1).data;
+            updateCurrentColor(pixel[0], pixel[1], pixel[2]);
+        }
     });
 
     // Mobile touch support
     canvas.addEventListener('touchstart', (e) => {
+        updateMagnifier(e);
         const rect = canvas.getBoundingClientRect();
         const scaleX = canvas.width / rect.width;
         const scaleY = canvas.height / rect.height;
@@ -113,8 +218,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const x = (touch.clientX - rect.left) * scaleX;
         const y = (touch.clientY - rect.top) * scaleY;
 
-        const pixel = ctx.getImageData(x, y, 1, 1).data;
-        updateCurrentColor(pixel[0], pixel[1], pixel[2]);
+        if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
+            const pixel = ctx.getImageData(x, y, 1, 1).data;
+            updateCurrentColor(pixel[0], pixel[1], pixel[2]);
+        }
     });
 
     function updateCurrentColor(r, g, b) {

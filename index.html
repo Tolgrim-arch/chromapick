@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chromapick - Extractor de Paletas</title>
-    <link rel="stylesheet" href="style.css?v=14">
+    <link rel="stylesheet" href="style.css?v=15">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#f9fafb">
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
@@ -22,14 +22,22 @@
     <main>
         <section class="upload-section" id="upload-section">
             <div class="drop-zone" id="drop-zone">
-                <span class="drop-text">Arrastra una imagen aquí o haz clic para subir</span>
+                <span class="drop-text">Arrastra una imagen aquí, haz clic, o presiona <strong>Ctrl+V</strong> para pegar</span>
                 <input type="file" id="file-input" accept="image/*" hidden>
+            </div>
+            
+            <div class="presets-container">
+                <p>O prueba con un ejemplo:</p>
+                <div class="preset-images">
+                    <img src="assets/preset1.png" alt="Cat Demo" class="preset-img" id="demo-img-1">
+                </div>
             </div>
         </section>
 
         <section class="workspace" id="workspace" style="display: none;">
             <div class="canvas-container">
                 <canvas id="image-canvas"></canvas>
+                <div class="magnifier" id="magnifier"></div>
             </div>
             
             <aside class="color-panel">
@@ -62,7 +70,7 @@
         </section>
     </main>
 
-    <script src="app.js?v=11"></script>
+    <script src="app.js?v=15"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
