@@ -333,6 +333,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const algoSelect = document.getElementById('extract-algo');
+    if (algoSelect) {
+        algoSelect.addEventListener('change', () => {
+            if (currentImage) {
+                extractPalette();
+            }
+        });
+    }
+
     // --- Simple Palette Extraction ---
 
     function extractPalette() {

@@ -97,22 +97,20 @@
 
                     <div class="extracted-palette">
                         <h3 data-i18n="extracted_palette">Extracted Palette</h3>
-                        <div class="color-count-control" style="display: flex; flex-direction: column; gap: 10px;">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <label style="display: flex; align-items: center; gap: 5px;">
-                                    <span data-i18n="algorithm">Algorithm:</span>
-                                    <select id="extract-algo" class="picker-select" style="padding: 2px 8px; font-size: 0.9rem;">
-                                        <option value="normal" data-i18n="algo_normal">Normal (Dominante)</option>
-                                        <option value="vibrant" data-i18n="algo_vibrant">Distintos (Vibrantes)</option>
-                                        <option value="warm" data-i18n="algo_warm">Cálidos</option>
-                                        <option value="cold" data-i18n="algo_cold">Fríos</option>
-                                    </select>
-                                </label>
-                            </div>
-                            <div>
-                                <label for="color-count"><span data-i18n="amount">Amount: </span><span id="color-count-display">12</span></label>
-                                <input type="range" id="color-count" min="3" max="12" value="12">
-                            </div>
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                            <label for="extract-algo" data-i18n="algorithm" style="font-size: 0.9rem; font-weight: 600; color: #4b5563;">Algoritmo:</label>
+                            <select id="extract-algo" class="picker-select" style="padding: 4px 8px; font-size: 0.9rem; flex: 1; margin-left: 10px;">
+                                <option value="normal" data-i18n="algo_normal">Normal (Dominante)</option>
+                                <option value="vibrant" data-i18n="algo_vibrant">Distintos (Vibrantes)</option>
+                                <option value="warm" data-i18n="algo_warm">Cálidos</option>
+                                <option value="cold" data-i18n="algo_cold">Fríos</option>
+                            </select>
+                        </div>
+
+                        <div class="color-count-control">
+                            <label for="color-count" style="display: flex; gap: 5px;"><span data-i18n="amount" style="width: auto;">Amount: </span><span id="color-count-display">12</span></label>
+                            <input type="range" id="color-count" min="3" max="12" value="12">
                         </div>
                         <div class="palette" id="palette-container">
                             <!-- Colors will be injected here -->
@@ -202,7 +200,7 @@
 </main>
 
     <script src="i18n.js?v=6"></script>
-    <script src="app.js?v=34"></script>
+    <script src="app.js?v=35"></script>
     <script src="converter.js?v=8"></script>
     <script>
         if ('serviceWorker' in navigator) {
