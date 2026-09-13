@@ -158,7 +158,7 @@ const outHwb = document.getElementById('conv-hwb');
 const mainColorDisplay = document.getElementById('main-color-display');
 const mainColorHex = document.getElementById('main-color-hex');
 
-let currentHsv = { h: 0, s: 100, v: 100 };
+window.currentHsv = { h: 0, s: 100, v: 100 };
 
 function updateConverterUI() {
     let rgb = hsvToRgb(currentHsv.h, currentHsv.s, currentHsv.v);
