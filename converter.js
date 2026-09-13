@@ -212,6 +212,16 @@ function handleSvDrag(e) {
     updateConverterUI();
 }
 
+// Update the sync backward function (Converter -> Extractor)
+const originalUpdateConverterUI = updateConverterUI;
+updateConverterUI = function() {
+    originalUpdateConverterUI();
+    let rgb = hsvToRgb(currentHsv.h, currentHsv.s, currentHsv.v);
+    if (window.setExtractorColor) {
+        window.setExtractorColor(rgb.r, rgb.g, rgb.b);
+    }
+};
+
 let isDraggingSv = false;
 svSquare.addEventListener('mousedown', (e) => { isDraggingSv = true; handleSvDrag(e); });
 document.addEventListener('mousemove', (e) => { if (isDraggingSv) handleSvDrag(e); });

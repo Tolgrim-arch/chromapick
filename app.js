@@ -242,13 +242,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    function updateCurrentColor(r, g, b) {
+    window.setExtractorColor = function(r, g, b) {
         const rgb = `rgb(${r}, ${g}, ${b})`;
         const hex = rgbToHex(r, g, b);
-        
         colorPreview.style.backgroundColor = rgb;
         hexInput.value = hex;
         rgbInput.value = rgb;
+    };
+
+    function updateCurrentColor(r, g, b) {
+        window.setExtractorColor(r, g, b);
+        
+        // Sync to Converter
+        if (window.rgbToHsv && window.updateConverterUI) {
+            window.currentHsv = window.rgbToHsv(r, g, b);
+            window.updateConverterUI();
+        }
     }
 
     function rgbToHex(r, g, b) {
