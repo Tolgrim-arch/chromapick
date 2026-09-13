@@ -241,18 +241,18 @@ h3 {
 /* From Uiverse.io by Cobp */ 
 .container-items {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
   transform-style: preserve-3d;
   transform: perspective(1000px);
-  padding: 10px 0;
+  padding: 15px 0;
+  margin: 10px 0;
+  justify-content: center; /* Centrar la baraja de colores */
 }
 
 .item-color {
   position: relative;
   flex-shrink: 0;
-  width: 32px;
-  height: 40px;
+  width: 22px; /* Ancho de apilamiento más cerrado para que quepan los 12 */
+  height: 60px; /* Alargados verticalmente */
   border: none;
   outline: none;
   transition: 500ms cubic-bezier(0.175, 0.885, 0.32, 1.1);
@@ -264,20 +264,21 @@ h3 {
   position: absolute;
   content: "";
   inset: 0;
-  width: 40px;
-  height: 40px;
+  width: 36px; /* Más ancho que el contenedor base, esto crea el solapamiento */
+  height: 60px;
   background-color: var(--color);
   border-radius: 6px;
   transform: scale(1.2);
   pointer-events: none;
   transition: 500ms cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  box-shadow: -2px 0 5px rgba(0,0,0,0.1); /* Sombra para resaltar el solapamiento */
 }
 
 .item-color::before {
   position: absolute;
   content: attr(aria-color);
   left: 65%;
-  bottom: 52px;
+  bottom: 80px;
   font-size: 10px;
   line-height: 12px;
   transform: translateX(-50%);
