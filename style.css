@@ -277,7 +277,7 @@ h3 {
     border-radius: 6px 0 0 6px;
     outline: none;
     font-family: monospace;
-    font-size: 0.95rem;
+    font-size: 1rem;
 }
 
 .color-values input:focus {
@@ -386,7 +386,7 @@ h3 {
 @media (max-width: 768px) {
     header { padding: 1.5rem 1rem; }
     header h1 { font-size: 1.5rem; }
-    main { padding: 1rem 1.5rem; }
+    main { margin: 1rem; padding: 1rem; }
     .upload-section { min-height: auto; padding: 2rem 1rem; gap: 1rem; }
     .drop-zone { min-height: 200px; padding: 1rem; }
     .canvas-container { min-height: 250px; max-height: 50vh; padding: 1rem; }
@@ -488,8 +488,8 @@ h3 {
     border-radius: 50%;
     position: absolute;
     top: 0;
-    right: 0;
-    transform: translate(50%, -50%);
+    left: 100%;
+    transform: translate(-50%, -50%);
     box-shadow: 0 0 0 1px rgba(0,0,0,0.3);
     pointer-events: none;
 }
@@ -621,13 +621,14 @@ h3 {
     font-size: 0.85rem;
 }
 .format-row input {
+    min-width: 0;
     flex: 1;
     border: none;
     background: transparent;
     font-family: monospace;
     outline: none;
     color: var(--text-color);
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 500;
 }
 .format-row .icon-btn {
@@ -651,4 +652,5 @@ h3 {
     font-family: inherit;
     outline: none;
 }
+
 
