@@ -22,6 +22,41 @@
 - **Frictionless Workflows**: Supports Drag & Drop, Click-to-upload, direct Ctrl+V clipboard pasting, and instant presets.
 - **Multi-language**: Fully translated into 14 languages automatically based on your system preferences.
 
+## 📸 Gallery
+
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="docs/assets/pagina_principal_demostracion.PNG" width="400" alt="Main UI / Extractor" /><br>
+      <b>Main Extractor & Zoom Tool</b>
+    </td>
+    <td align="center">
+      <img src="docs/assets/algoritm-demo-and-extracted-colors.PNG" width="400" alt="Extraction Algorithms" /><br>
+      <b>Algorithm Variations</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="docs/assets/converter-captura-colordemostracion.PNG" width="400" alt="Format Converter" /><br>
+      <b>Format Converter</b>
+    </td>
+    <td align="center">
+      <img src="docs/assets/color-combinations-demo.PNG" width="400" alt="Color Combinations" /><br>
+      <b>Mathematical Color Harmonies</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="docs/assets/favorites-colors-demostration-andpaletes.PNG" width="400" alt="Saved Palettes" /><br>
+      <b>Local Favorites Management</b>
+    </td>
+    <td align="center">
+      <img src="docs/assets/chromapick-in-moviles-demostration-in-principalpage.PNG" width="400" alt="Mobile Experience" /><br>
+      <b>📱 100% Mobile Ready</b>
+    </td>
+  </tr>
+</table>
+
 ## 🛠️ Tech Stack
 
 - **Vanilla JavaScript** (Zero dependencies, pure DOM performance)
