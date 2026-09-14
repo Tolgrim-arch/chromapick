@@ -14,48 +14,40 @@
 
 ## 🚀 Features
 
-- **Euclidean Color Extraction**: Dynamically computes up to 12 dominant colors from any image using spatial color distance mathematics (Dominant, Vibrant, Warm, and Cold algorithms).
-- **Color Combinations**: Mathematically generates visual harmonies (Complementary, Split, Triadic, Analogous, Monochromatic, Tetradic) directly from your selected color.
-- **Surgical Precision Eyedropper**: Features a raw pixelated 8x zoom magnifier with a pixel-perfect crosshair grid for extreme targeting accuracy.
-- **Color Converter**: Instantly translates colors between HEX, HSL, RGB, CMYK, LAB, XYZ, LUV, and HWB formats.
-- **Offline First**: Runs entirely in the browser using the HTML5 Canvas API. No server-side processing, no external API calls, zero privacy risks.
-- **Frictionless Workflows**: Supports Drag & Drop, Click-to-upload, direct Ctrl+V clipboard pasting, and instant presets.
-- **Multi-language**: Fully translated into 14 languages automatically based on your system preferences.
+### 🔍 Euclidean Color Extraction & Surgical Precision
+Dynamically computes up to 12 dominant colors from any image using spatial color distance mathematics (Dominant, Vibrant, Warm, and Cold algorithms). Features a raw pixelated 8x zoom magnifier with a pixel-perfect crosshair grid for extreme targeting accuracy.
+<br>
+<img src="docs/assets/pagina_principal_demostracion.PNG" width="800" alt="Main UI / Extractor" />
+<br>
+<img src="docs/assets/algoritm-demo-and-extracted-colors.PNG" width="800" alt="Algorithm Variations" />
+<br><br>
 
-## 📸 Gallery
+### 🔄 Advanced Color Converter
+Instantly translates colors between HEX, HSL, RGB, CMYK, LAB, XYZ, LUV, and HWB formats.
+<br>
+<img src="docs/assets/converter-captura-colordemostracion.PNG" width="800" alt="Format Converter" />
+<br><br>
 
-<table align="center">
-  <tr>
-    <td align="center">
-      <img src="docs/assets/pagina_principal_demostracion.PNG" width="400" alt="Main UI / Extractor" /><br>
-      <b>Main Extractor & Zoom Tool</b>
-    </td>
-    <td align="center">
-      <img src="docs/assets/algoritm-demo-and-extracted-colors.PNG" width="400" alt="Extraction Algorithms" /><br>
-      <b>Algorithm Variations</b>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="docs/assets/converter-captura-colordemostracion.PNG" width="400" alt="Format Converter" /><br>
-      <b>Format Converter</b>
-    </td>
-    <td align="center">
-      <img src="docs/assets/color-combinations-demo.PNG" width="400" alt="Color Combinations" /><br>
-      <b>Mathematical Color Harmonies</b>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="docs/assets/favorites-colors-demostration-andpaletes.PNG" width="400" alt="Saved Palettes" /><br>
-      <b>Local Favorites Management</b>
-    </td>
-    <td align="center">
-      <img src="docs/assets/chromapick-in-moviles-demostration-in-principalpage.PNG" width="400" alt="Mobile Experience" /><br>
-      <b>📱 100% Mobile Ready</b>
-    </td>
-  </tr>
-</table>
+### 🎨 Mathematical Color Combinations
+Mathematically generates visual harmonies (Complementary, Split, Triadic, Analogous, Monochromatic, Tetradic) directly from your selected color, ensuring optimal visual balance.
+<br>
+<img src="docs/assets/color-combinations-demo.PNG" width="800" alt="Color Combinations" />
+<br><br>
+
+### ⭐ Local Favorites Management
+Save your favorite extracted palettes directly in your browser without requiring a database or account.
+<br>
+<img src="docs/assets/favorites-colors-demostration-andpaletes.PNG" width="800" alt="Saved Palettes" />
+<br><br>
+
+### 📱 100% Mobile Ready & Responsive
+Carefully optimized for both desktop monitors and mobile touchscreens.
+<br>
+<img src="docs/assets/chromapick-in-moviles-demostration-in-principalpage.PNG" width="400" alt="Mobile Experience" />
+<br><br>
+
+### ⚡ Offline First & Frictionless Workflows
+Runs entirely in the browser using the HTML5 Canvas API. No server-side processing, no external API calls, zero privacy risks. Supports Drag & Drop, Click-to-upload, direct Ctrl+V clipboard pasting, and instant presets. Fully auto-translated into 14 languages based on your OS language.
 
 ## 🛠️ Tech Stack
 
